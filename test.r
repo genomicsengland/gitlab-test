@@ -6,7 +6,8 @@ library(wrangleR)
 library(RPostgreSQL)
 drv <- dbDriver("PostgreSQL")
 p <- getprofile(
-				"mis_con"
+				"mis_con",
+				file = '.gel_config'
 				  )
 con <- dbConnect(drv,
              dbname = "gel_mi",
