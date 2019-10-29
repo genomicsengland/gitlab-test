@@ -6,16 +6,16 @@ get_docker_image:
   stage: get_image
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
-    - docker pull ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker/cdt-docker
-    - docker tag ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker/cdt-docker ${CI_REGISTRY}/genomicsengland/dataquality/gitlab-test/gitlab-test
-    - docker push ${CI_REGISTRY}/genomicsengland/dataquality/gitlab-test/gitlab-test
+    - docker pull ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker
+    - docker tag ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker ${CI_REGISTRY}/genomicsengland/dataquality/gitlab-test
+    - docker push ${CI_REGISTRY}/genomicsengland/dataquality/gitlab-test
   tags:
     - ou:cln
     - executor:docker
 
 run_dq_tests:
   stage: run_tests
-  image: ${CI_REGISTRY_IMAGE}/gitlab-test:latest
+  image: ${CI_REGISTRY_IMAGE}:latest
   script:
     - cp ${cdt_del_deploy} ${CI_PROJECT_DIR}/.gel_config
     - ls -lh .gel_config
