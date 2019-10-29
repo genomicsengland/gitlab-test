@@ -1,9 +1,19 @@
 stages:
+  - get_image
   - run_tests
+
+get_docker_image:
+  stage: get_image
+  script:
+    - docker pull ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker
+    - docker tag ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker ${CI_REGISTRY}/genomicsengland/dataquality/gitlab-test
+    - docker push ${CI_REGISTRY}/genomicsengland/dataquality/gitlab-test
+  tags:
+    - executor:docker
 
 run_dq_tests:
   stage: run_tests
-  image: ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker/cdt-docker:latest
+  image: ${CI_REGISTRY_IMAGE}/gitlab-test:latest
   script:
     - cp ${cdt_del_deploy} ${CI_PROJECT_DIR}/.gel_config
     - ls -lh .gel_config
