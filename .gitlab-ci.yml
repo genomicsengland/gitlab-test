@@ -10,6 +10,7 @@ get_docker_image:
     - docker tag ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker/cdt-docker ${CI_REGISTRY}/genomicsengland/dataquality/gitlab-test/gitlab-test
     - docker push ${CI_REGISTRY}/genomicsengland/dataquality/gitlab-test/gitlab-test
   tags:
+    - ou:cln
     - executor:docker
 
 run_dq_tests:
