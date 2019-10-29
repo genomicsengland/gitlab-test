@@ -3,7 +3,7 @@ stages:
 
 run_dq_tests:
   stage: run_tests
-  image: ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker/cdt-docker:${cdq_version}
+  image: ${CI_REGISTRY}/genomicsengland/dataquality/cdt-docker/cdt-docker:latest
   script:
     - cp ${cdt_del_deploy} ${CI_PROJECT_DIR}/.gel_config
     - ls -lh .gel_config
