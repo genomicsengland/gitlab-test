@@ -23,7 +23,6 @@ run_dq_tests:
     - Rscript test.r
   tags:
     - ou:cln
-    - executor:docker
   only:
     refs:
       - master
