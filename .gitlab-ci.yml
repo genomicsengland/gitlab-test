@@ -14,7 +14,7 @@ get_docker_image:
 
 run_dq_tests:
   stage: run_tests
-  image: ${CI_REGISTRY_IMAGE}:latest
+  image: registry.gitlab.com/genomicsengland/dataquality/gitlab-test:latest
   script:
     - cp ${gel_config} ${CI_PROJECT_DIR}/.gel_config
     - ls -lh .gel_config
