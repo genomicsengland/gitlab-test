@@ -4,6 +4,8 @@ stages:
 
 get_docker_image:
   stage: build_image
+  except:
+    - schedules
   script:
     - docker build -t ${CI_REGISTRY_IMAGE}:latest .
     - docker login -u gitlab-ci-token -p ${CI_BUILD_TOKEN} ${CI_REGISTRY}
@@ -24,6 +26,7 @@ run_dq_tests:
     - ou:cln
     - executor:docker
   only:
+    - schedules
     refs:
       - master
 
