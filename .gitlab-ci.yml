@@ -1,9 +1,4 @@
-stages:
-  - build_image
-  - run_tests
-
-get_docker_image:
-  stage: build_image
+make_image:
   except:
     - schedules
   script:
@@ -15,7 +10,6 @@ get_docker_image:
     
 
 run_dq_tests:
-  stage: run_tests
   image: registry.gitlab.com/genomicsengland/dataquality/gitlab-test:latest
   script:
     - cp ${gel_config} ${CI_PROJECT_DIR}/.gel_config
@@ -26,7 +20,6 @@ run_dq_tests:
     - ou:cln
     - executor:docker
   only:
-    - schedules
     refs:
-      - master
+      - schedules
 
