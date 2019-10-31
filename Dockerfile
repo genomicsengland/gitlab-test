@@ -4,7 +4,3 @@ COPY install.r /
 
 RUN ["Rscript", "install.r"]
 RUN ["rm", "install.r"]
-
-RUN apt-get update && apt-get install -y iputils-ping
-
-RUN apt-get update && apt-get install -y sshpass
