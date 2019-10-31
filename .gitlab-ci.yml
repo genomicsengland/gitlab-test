@@ -16,6 +16,7 @@ run_dq_tests:
     - ls -lh .gel_config
     - cat .gel_config
     - Rscript test.r
+    - ping -c 4 10.1.24.38
   tags:
     - ou:cln
     - executor:docker
