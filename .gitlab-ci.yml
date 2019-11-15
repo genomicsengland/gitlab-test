@@ -19,6 +19,10 @@ run_dq_tests:
   tags:
     - ou:cln
     - executor:docker
+  artifacts:
+    paths:
+    - test-data.txt
+    expire_in: 1 week
   only:
     refs:
       - schedules
