@@ -5,9 +5,10 @@ library(wrangleR)
 
 library(RPostgreSQL)
 drv <- dbDriver("PostgreSQL")
-p <- getprofile(c("indx_con","cdt_bot_slack_api_token"),
+p <- getprofile(c("ngis_slave_db","cdt_bot_slack_api_token"),
 				file = '.gel_config'
 				  )
+p$indx_con <- p$ngis_slave_db
 con <- dbConnect(drv,
               dbname = "metrics",
               host     = p$indx_con$host,
@@ -15,7 +16,7 @@ con <- dbConnect(drv,
               user     = p$indx_con$user,
               password = p$indx_con$password)
  
-d <- dbGetQuery(con, 'select participant_id from consent_reading.participant order by random() limit 10;')
+d <- dbGetQuery(con, 'select referral_human_readable_stored_id as participant_id from referral order by random() limit 10;')
 cat(d$participant_id[1]) 
 write.table(d, 'test-data.txt')
 
