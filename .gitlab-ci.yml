@@ -17,7 +17,7 @@ run_dq_tests:
     - Rscript test.r
     - ping 10.1.24.38 -c 2
   tags:
-    - ou:cln
+    - location:ukc_fixed
     - executor:docker
   artifacts:
     paths:
