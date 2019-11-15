@@ -10,7 +10,7 @@ p <- getprofile(c("ngis_slave_db","cdt_bot_slack_api_token"),
 				  )
 p$indx_con <- p$ngis_slave_db
 con <- dbConnect(drv,
-              dbname = "metrics",
+              dbname = "ngis_genomicrecord_beta",
               host     = p$indx_con$host,
               port     = p$indx_con$port,
               user     = p$indx_con$user,
