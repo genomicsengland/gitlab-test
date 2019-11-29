@@ -5,15 +5,15 @@ library(wrangleR)
 
 library(RPostgreSQL)
 drv <- dbDriver("PostgreSQL")
-p <- getprofile(c("indx_con","cdt_bot_slack_api_token"),
+p <- getprofile(c("mis_con","cdt_bot_slack_api_token"),
 				file = '.gel_config'
 				  )
 con <- dbConnect(drv,
-              dbname = "ngis_genomicrecord_beta",
-              host     = p$indx_con$host,
-              port     = p$indx_con$port,
-              user     = p$indx_con$user,
-              password = p$indx_con$password)
+              dbname = "gel_mi",
+              host     = p$mis_con$host,
+              port     = p$mis_con$port,
+              user     = p$mis_con$user,
+              password = p$mis_con$password)
  
 #d <- dbGetQuery(con, 'select referral_human_readable_stored_id as participant_id from referral order by random() limit 10;')
 d <- dbGetQuery(con, 'select participant_id from cdm.participant limit 10;')
