@@ -8,17 +8,17 @@ drv <- dbDriver("PostgreSQL")
 p <- getprofile(c("mis_con","cdt_bot_slack_api_token"),
 				file = '.gel_config'
 				  )
-con <- dbConnect(drv,
-              dbname = "gel_mi",
-              host     = p$mis_con$host,
-              port     = p$mis_con$port,
-              user     = p$mis_con$user,
-              password = p$mis_con$password)
+#con <- dbConnect(drv,
+#              dbname = "gel_mi",
+#              host     = p$mis_con$host,
+#              port     = p$mis_con$port,
+#              user     = p$mis_con$user,
+#              password = p$mis_con$password)
  
 #d <- dbGetQuery(con, 'select referral_human_readable_stored_id as participant_id from referral order by random() limit 10;')
-d <- dbGetQuery(con, 'select participant_id from cdm.participant limit 10;')
-cat(d$participant_id[1]) 
-write.table(d, 'test-data.txt')
+#d <- dbGetQuery(con, 'select participant_id from cdm.participant limit 10;')
+#cat(d$participant_id[1]) 
+write.table(mtcars, 'test-data.txt')
 
 send_df_to_slack_as_file <- function(d, channel, api_token, filename = NA, comment = NA){
 	require(knitr)
