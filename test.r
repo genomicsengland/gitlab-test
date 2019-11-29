@@ -30,4 +30,4 @@ send_df_to_slack_as_file <- function(d, channel, api_token, filename = NA, comme
 	slackr_upload(fn, title = filename, initial_comment = comment, channels = channel, api_token = api_token)
 }
 
-send_df_to_slack_as_file(d, 'simon-test', p$cdt_bot_slack_api_token, 'data', paste('this has been uploaded by Gitlab on', Sys.Date()))
+send_df_to_slack_as_file(mtcars, 'simon-test', p$cdt_bot_slack_api_token, 'data', paste('this has been uploaded by Gitlab on', Sys.Date()))
