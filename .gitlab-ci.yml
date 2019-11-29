@@ -16,6 +16,7 @@ run_dq_tests:
     - ls -lh .gel_config
     - 'curl --location --output artifacts.zip --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://genomicsengland.gitlab.io//api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/master/download?job=run_dq_test"'
     - ls -lh artifacts.zip
+    - cat artifacts.zip
     - unzip artifacts.zip
     - ls -lh test-data.txt
     - Rscript test.r
