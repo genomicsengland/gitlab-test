@@ -8,5 +8,7 @@ RUN apt-get update && apt-get install -y libcurl4-openssl-dev
 
 RUN apt-get update && apt-get install -y libssl-dev
 
+RUN apt-get update && apt-get install curl
+
 RUN ["Rscript", "install.r"]
 RUN ["rm", "install.r"]
