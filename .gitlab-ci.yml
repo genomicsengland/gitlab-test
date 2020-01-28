@@ -12,7 +12,7 @@ make_image:
 run_dq_tests:
   image: registry.gitlab.com/genomicsengland/dataquality/gitlab-test:latest
   script:
-    - python ms_teams.py
+    - python3 ms_teams.py
   tags:
     - location:ukc_fixed
     - executor:docker
