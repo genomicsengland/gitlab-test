@@ -13,6 +13,7 @@ run_dq_tests:
   image: registry.gitlab.com/genomicsengland/dataquality/gitlab-test:latest
   script:
     - echo ${CI_JOB_TOKEN}
+    - echo ${SP_USERNAME}
     - cp ${gel_config} ${CI_PROJECT_DIR}/.gel_config
     - ls -lh .gel_config
     - 'curl --location --output artifacts.zip --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://genomicsengland.gitlab.io/api/v4/projects/$CI_PROJECT_ID/jobs/artifacts/master/download?job=run_dq_test"'
