@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y libssl-dev
 
 RUN apt-get update && apt-get install curl
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 RUN ["Rscript", "install.r"]
 RUN ["rm", "install.r"]
