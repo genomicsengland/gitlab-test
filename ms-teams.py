@@ -15,7 +15,9 @@ def send_msg_to_ms_teams(webhook_url, msg):
     tms_msg.test(msg)
     tm_msg.send()
 
-def load_or_create_sp_session(sp_url="genomicsenglandltd.sharepoint.com"):
+def load_or_create_sp_session(sp_url="genomicsenglandltd.sharepoint.com",
+                              username=None,
+                              password=None):
     """
     check if a session file already exists
     if it does, load it, if not create one
@@ -29,7 +31,10 @@ def load_or_create_sp_session(sp_url="genomicsenglandltd.sharepoint.com"):
     if os.path.isfile("sp-session.pkl"):
         s = sharepy.load()
     else:
-        s = sharepy.connect(sp_url)
+        if username and password:
+            s = sharepy.connect(sp_url, username=username, password=password)
+        else:
+            s = sharepy.connect(sp_url)
         s.save()
     return s
 
@@ -89,6 +94,9 @@ def list_fldr_contents(team, fldr):
 if __name__ == "__main__":
     import pandas as pd
     import xlrd
+    import os
+    load_or_create_sp_session(username=os.environ['SP_USERNAME'],
+                              password=os.environ['SP_PASSWORD'])
     a = download_file_from_sp('GE-simon-test', 'Shared Documents/General', 'new-file.xlsx')
     c = pd.read_excel(xlrd.open_workbook(file_contents = a.content))
     print(c)
